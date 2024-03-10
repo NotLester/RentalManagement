@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 // function to connect to the database
 const connectDB = (url) => {
-  mongoose.set("strictQuery", true); //suppress mongoose 7 deprecation warning
+  mongoose.set("strictQuery", true); 
   return mongoose
     .connect(url)
     .then(() => {

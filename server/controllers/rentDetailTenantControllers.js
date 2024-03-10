@@ -2,11 +2,7 @@ import RentDetail from "../models/RentDetail.js";
 import PaymentHistory from "../models/PaymentHistory.js";
 import { NotFoundError, BadRequestError } from "../request-errors/index.js";
 
-/**
- * @description Get Single Rent Detail for tenant user
- * @route GET /api/rentDetailTenant/:realEstateId
- * @returns {object} Rent Detail object
- */
+
 const getSingleRentDetailsTenantView = async (req, res) => {
   const rentDetail = await RentDetail.findOne({
     realEstate: req.params.realEstateId,
@@ -29,11 +25,6 @@ const getSingleRentDetailsTenantView = async (req, res) => {
   res.json({ rentDetail, rentStatus });
 };
 
-/**
- * @description Get All Payment History for tenant user
- * @route GET /api/rentDetailTenant/allPaymentHistory/:rentDetailId
- * @returns {object} All Payment History Array
- */
 const getAllPaymentHistory = async (req, res) => {
   let paymentHistoryResults = PaymentHistory.find({
     rentDetail: req.params.rentDetailId,

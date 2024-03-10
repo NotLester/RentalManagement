@@ -4,11 +4,7 @@ import RentDetail from "../models/RentDetail.js";
 import PaymentHistory from "../models/PaymentHistory.js";
 import { NotFoundError, BadRequestError } from "../request-errors/index.js";
 
-/**
- * @description Create Contract
- * @route POST /api/rentDetail/createDetail
- * @returns {object} rent detail object
- */
+
 const createRentDetail = async (req, res) => {
   const { tenant, realEstate } = req.body;
   req.body.owner = req.user.userId;
@@ -50,11 +46,7 @@ const createRentDetail = async (req, res) => {
     .json({ rentDetail, msg: "Rent detail created", success: true });
 };
 
-/**
- * @description Get all the Rent Details for owner user
- * @route GET /api/rentDetail/allRentDetails
- * @returns {object} Rent Details Array
- */
+
 const getAllRentDetailsOwnerView = async (req, res) => {
   const rentDetails = await RentDetail.find({ owner: req.user.userId })
     .populate({
@@ -74,11 +66,6 @@ const getAllRentDetailsOwnerView = async (req, res) => {
   res.json({ rentDetails, count: rentDetails.length });
 };
 
-/**
- * @description Get all the Rent Details for owner user
- * @route GET /api/rentDetail/allRentDetails
- * @returns {object} Rent Details Array
- */
 const getSingleRentDetailsOwnerView = async (req, res) => {
   const rentDetail = await RentDetail.findById(req.params.rentDetailId)
     .populate({
@@ -103,11 +90,6 @@ const getSingleRentDetailsOwnerView = async (req, res) => {
   res.json({ rentDetail, rentStatus });
 };
 
-/**
- * @description Create rent payment history
- * @route POST /api/rentDetail/createPaymentHistory
- * @returns {object} Payment Detail Object
- */
 const createPaymentHistory = async (req, res) => {
   const { rentDetail } = req.body;
 
@@ -141,11 +123,7 @@ const createPaymentHistory = async (req, res) => {
   res.status(201).json({ paymentDetail, msg: "Payment detail created" });
 };
 
-/**
- * @description Get All Payment History for owner user
- * @route GET /api/rentDetail/allPaymentHistory/:rentDetailId
- * @returns {object} All Payment History Array
- */
+
 const getAllPaymentHistory = async (req, res) => {
   let paymentHistoryResults = PaymentHistory.find({
     rentDetail: req.params.rentDetailId,

@@ -5,11 +5,7 @@ import TenantUser from "../models/TenantUser.js";
 import { BadRequestError, UnAuthorizedError } from "../request-errors/index.js";
 import { sendEmail } from "../utils/emailSender.js";
 dotenv.config();
-/**
- * @description Login a user
- * @returns {object} user
- * @returns {string} token
- */
+
 const login = async (req, res) => {
 	const { role, email, password } = req.body;
 	if (!email || !password) {
@@ -95,11 +91,6 @@ const login = async (req, res) => {
 	}
 };
 
-/**
- * @description Register a user
- * @returns {object} user
- * @returns {string} token
- */
 const register = async (req, res) => {
 	const { role, email } = req.body;
 
@@ -183,9 +174,6 @@ const register = async (req, res) => {
 	}
 };
 
-/**
- * @description Verify user account
- */
 const verifyAccount = (req, res) => {
 	const { role, token } = req.body;
 
@@ -275,9 +263,6 @@ const verifyAccount = (req, res) => {
 	}
 };
 
-/**
- * @description Resend the verification email
- */
 const resendVerificationEmail = async (req, res) => {
 	const { email, role } = req.body;
 
@@ -363,10 +348,6 @@ const resendVerificationEmail = async (req, res) => {
 	}
 };
 
-/**
- * @description generate new access token
- * @returns {string} access token
- */
 const refreshOwner = async (req, res) => {
 	const cookie = req.cookies;
 
@@ -393,10 +374,6 @@ const refreshOwner = async (req, res) => {
 	}
 };
 
-/**
- * @description generate new access token
- * @returns {string} access token
- */
 const refreshTenant = async (req, res) => {
 	const cookie = req.cookies;
 
@@ -423,10 +400,6 @@ const refreshTenant = async (req, res) => {
 	}
 };
 
-/**
- * @description Forgot Password - send email
- * @route POST /api/auth/forgot-password
- */
 const forgotPassword = async (req, res) => {
 	const { email, role } = req.body;
 
@@ -511,10 +484,6 @@ const forgotPassword = async (req, res) => {
 	}
 };
 
-/**
- * @description Reset Password
- * @route POST /api/auth/reset-password
- */
 const resetPassword = async (req, res) => {
 	const { token, newPassword, passwordRepeated, role } = req.body;
 	if (!token) {
@@ -608,9 +577,6 @@ const resetPassword = async (req, res) => {
 	}
 };
 
-/**
- * @description Logout a user
- */
 const logout = (req, res) => {
 	const cookies = req.cookies;
 	if (!cookies?.jwt) {

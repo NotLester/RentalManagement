@@ -1,9 +1,6 @@
 import Chat from "../models/Chats.js";
 
-/**
- * @description Send message
- * @returns {object} message
- */
+
 const sendMessage = async (req, res) => {
   const { to, message } = req.body;
   const { userId: from } = req.user;
@@ -15,10 +12,7 @@ const sendMessage = async (req, res) => {
   res.status(201).json({ newMessage, msg: "Message sent successfully" });
 };
 
-/**
- * @description Get all messages for a chat
- * @returns {object} message
- */
+
 const getMessages = async (req, res) => {
   const { to } = req.body;
   const { userId: from } = req.user;

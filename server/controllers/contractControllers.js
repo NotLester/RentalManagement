@@ -8,11 +8,7 @@ import PaymentHistory from "../models/PaymentHistory.js";
 import { NotFoundError, BadRequestError } from "../request-errors/index.js";
 import { sendEmail } from "../utils/emailSender.js";
 
-/**
- * @description Create Contract
- * @route PATCH /api/owner/contract
- * @returns {object} Contract object
- */
+
 const createContract = async (req, res) => {
   const { tenant, realEstate } = req.body;
   req.body.owner = req.user.userId;
@@ -72,11 +68,7 @@ const createContract = async (req, res) => {
   res.json({ contract });
 };
 
-/**
- * @description Get contract details for tenant user
- * @route GET /api/contract/tenantView/:contractId
- * @returns {object} 200 - An object containing the contract details
- */
+
 const getContractDetailTenantView = async (req, res) => {
   const contractDetail = await Contract.findOne({
     _id: req.params.contractId,
@@ -102,11 +94,6 @@ const getContractDetailTenantView = async (req, res) => {
   res.json({ contractDetail });
 };
 
-/**
- * @description Approve contract
- * @route PATCH /api/contract/approve/:contractId
- * @returns {object} 200 - An object containing the contract details
- */
 const approveContract = async (req, res) => {
   const contractDetail = await Contract.findOne({
     _id: req.params.contractId,
@@ -153,11 +140,6 @@ const approveContract = async (req, res) => {
   res.json({ contractDetail });
 };
 
-/**
- * @description Get contract details for owner user
- * @route GET /api/contract/ownerView/:realEstateId
- * @returns {object} 200 - An object containing the contract details
- */
 const getContractDetailOwnerView = async (req, res) => {
   const contractDetail = await Contract.findOne({
     owner: req.user.userId,
@@ -183,11 +165,6 @@ const getContractDetailOwnerView = async (req, res) => {
   res.json({ contractDetail });
 };
 
-/**
- * @description Delete contract
- * @route GET /api/contract/ownerView/:realEstateId
- * @returns
- */
 const deleteContract = async (req, res) => {
   const contract = await Contract.findOneAndDelete({
     _id: req.params.contractId,
@@ -255,11 +232,6 @@ const deleteContract = async (req, res) => {
   res.json({ message: "Contract terminated successfully", success: true });
 };
 
-/**
- * @description Get All Owner's Contracts
- * @route GET /api/contract/owner/allContracts
- * @returns
- */
 const getOwnerAllContracts = async (req, res) => {
   const allContracts = await Contract.find({
     owner: req.user.userId,
@@ -277,11 +249,6 @@ const getOwnerAllContracts = async (req, res) => {
   res.json({ allContracts });
 };
 
-/**
- * @description Get the active rental properties of the tenant user
- * @route GET /api/contract/tenantUser/allRentalProperties
- * @returns property details
- */
 const getAllTenantRentalProperties = async (req, res) => {
   const allRentalProperties = await Contract.find({
     tenant: req.user.userId,
@@ -299,11 +266,6 @@ const getAllTenantRentalProperties = async (req, res) => {
   res.json({ allRentalProperties, count: allRentalProperties.length });
 };
 
-/**
- * @description Get the contract details for the tenant user using the real estate id
- * @route GET /api/contract/tenant/:realEstateId
- * @returns {object} 200 - An object containing the contract details
- */
 const getTenantContractDetail = async (req, res) => {
   const contractDetail = await Contract.findOne({
     realEstate: req.params.realEstateId,

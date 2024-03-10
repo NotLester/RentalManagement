@@ -2,10 +2,7 @@ import RealEstate from "../models/RealEstate.js";
 import { NotFoundError } from "../request-errors/index.js";
 import TenantUser from "../models/TenantUser.js";
 
-/**
- * @description Get all properties
- * @returns {object} realEstate array
- */
+
 const getAllProperties = async (req, res) => {
   const { search, category, priceFilter } = req.query;
 
@@ -46,10 +43,7 @@ const getAllProperties = async (req, res) => {
   res.json({ allRealEstate, numberOfPages, totalRealEstates });
 };
 
-/**
- * @description Get single property
- * @returns {object} realEstate
- */
+
 const getSingleProperty = async (req, res) => {
   const { slug } = req.params;
   const { userId } = req.user;
@@ -72,10 +66,7 @@ const getSingleProperty = async (req, res) => {
   res.json({ realEstate, isSaved });
 };
 
-/**
- * @description Save property if not saved otherwise remove from saved list
- * @returns {object} TenantUser
- */
+
 const savePropertyToggle = async (req, res) => {
   const { id } = req.params;
   const { userId } = req.user;
@@ -123,10 +114,6 @@ const savePropertyToggle = async (req, res) => {
   }
 };
 
-/**
- * @description Get all properties
- * @returns {object} realEstate array
- */
 const getAllSavedProperties = async (req, res) => {
   const { userId } = req.user;
 

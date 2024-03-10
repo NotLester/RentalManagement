@@ -112,6 +112,8 @@ const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
+
+// TODO: Socket.io setup
 // Socket setup
 const io = new Server(server, {
   cors: {

@@ -3,11 +3,7 @@ import TenantUser from "../models/TenantUser.js";
 import RealEstate from "../models/RealEstate.js";
 import { NotFoundError, BadRequestError } from "../request-errors/index.js";
 
-/**
- * @description Get Single Owner User
- * @route GET /api/tenant/owner-user/:slug
- * @returns {object} 200 - An object containing the owner user
- */
+
 const getSingleOwnerUser = async (req, res) => {
   const { slug } = req.params;
   const { userId } = req.user;
@@ -31,22 +27,12 @@ const getSingleOwnerUser = async (req, res) => {
   res.json({ user, realEstates, isContact });
 };
 
-/**
- * @description Get current user's details
- * @route GET /api/tenant/profile
- * @returns {object} 200 - An object containing the user
- */
 const getSelfDetail = async (req, res) => {
   const user = await TenantUser.findById(req.user.userId);
   if (!user) throw new NotFoundError("User not found");
   res.json({ user });
 };
 
-/**
- * @description Update current user's details
- * @route PATCH /api/tenant/profile
- * @returns {object} 200 - An object containing the user
- */
 const updateProfile = async (req, res) => {
   const { phoneNumber, address, gender } = req.body;
 
@@ -70,11 +56,6 @@ const updateProfile = async (req, res) => {
   res.json({ user });
 };
 
-/**
- * @description Toggle Add Contact (Add or Remove Contact)
- * @route PATCH /api/tenant/addContact/:id
- * @returns {object} 200 - An object containing the user
- */
 const addContactToggle = async (req, res) => {
   const { id } = req.params;
   const { userId } = req.user;
@@ -111,11 +92,6 @@ const addContactToggle = async (req, res) => {
   }
 };
 
-/**
- * @description Get All Contacts
- * @route PATCH /api/tenant/contacts/all
- * @returns {object} 200 - An array containing the contact users
- */
 const getAllContacts = async (req, res) => {
   const { userId } = req.user;
   const { name } = req.query;
