@@ -1,19 +1,19 @@
 import express from "express";
-const router = express.Router();
 import {
+  forgotPassword,
   login,
-  register,
+  logout,
   refreshOwner,
   refreshTenant,
-  logout,
-  forgotPassword,
+  register,
+  resendVerificationEmail,
   resetPassword,
   verifyAccount,
-  resendVerificationEmail,
 } from "../controllers/authController.js";
-import upload from "../middleware/multerImageMiddleware.js";
 import { cloudinaryProfileImageUpload } from "../middleware/cloudinaryUpload.js";
+import upload from "../middleware/multerImageMiddleware.js";
 import { apiLimiter } from "../middleware/rateLimiter.js";
+const router = express.Router();
 
 
 router.get("/owner/refresh", refreshOwner);
