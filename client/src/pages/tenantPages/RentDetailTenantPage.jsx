@@ -101,7 +101,7 @@ const RentDetailTenantPage = () => {
               <p className="-ml-1 text-base tracking-tight">
                 <LocationOnOutlinedIcon sx={{ color: "#019149" }} />
                 {rentDetail?.realEstate?.address?.location},{" "}
-                {rentDetail?.realEstate?.address?.streetName} ,Kathmandu
+                {rentDetail?.realEstate?.address?.streetName} ,Karnataka
               </p>
             </div>
             <div className="mt-4 text-primaryDark">

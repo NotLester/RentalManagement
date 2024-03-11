@@ -152,7 +152,7 @@ const UpdatePropertyForm = ({
             value={values.streetName}
             handleChange={handleChange}
           />
-          <TextField label="City" color="tertiary" disabled value="Kathmandu" />
+          <TextField label="City" color="tertiary" disabled value="India" />
         </div>
       </div>
 
